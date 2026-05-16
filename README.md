@@ -7,6 +7,7 @@
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/release/python-3110/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=flat&logo=PyTorch&logoColor=white)](https://pytorch.org/)
 [![OpenCV](https://img.shields.io/badge/opencv-%23white.svg?style=flat&logo=opencv&logoColor=white)](https://opencv.org/)
+[![MediaPipe](https://img.shields.io/badge/MediaPipe-0.10.14-blue.svg)](https://mediapipe.dev/)
 [![Accuracy](https://img.shields.io/badge/Validation%20Accuracy-90.32%25-brightgreen.svg)]()
 
 > A custom Convolutional Neural Network (CNN) built entirely from scratch using PyTorch to play Rock, Paper, Scissors in real-time through your webcam.
@@ -20,7 +21,8 @@
 - **Custom CNN Architecture**: A highly optimized 5-block Convolutional Neural Network built specifically for 300x300 image inputs.
 - **Mixed Precision Training**: Utilizes `torch.cuda.amp` to maximize GPU utilization and prevent VRAM out-of-memory errors on mid-range GPUs (e.g., RTX 4050).
 - **High Accuracy**: Reached **90.32% validation accuracy** in just 10 epochs.
-- **Real-Time Inference**: A lightweight OpenCV engine captures live webcam frames, extracts a central Region of Interest (ROI), and runs inference instantly using `torch.no_grad()`.
+- **MediaPipe Hand Detection**: Uses MediaPipe Hands to dynamically detect and crop a tight bounding box around the player's hand before inference, eliminating real-world background interference.
+- **Real-Time Inference**: A lightweight OpenCV engine captures live webcam frames, runs MediaPipe hand detection, and feeds the cropped hand region to the model instantly using `torch.no_grad()`.
 
 ---
 
@@ -45,9 +47,11 @@ Clone the repository and install the dependencies:
 python -m venv myenv
 .\myenv\Scripts\Activate.ps1
 
-# Install requirements (includes PyTorch with CUDA 12.1 support)
+# Install requirements (includes PyTorch with CUDA 12.1 support + MediaPipe)
 pip install -r requirements.txt
 ```
+
+> **Note:** `mediapipe==0.10.14` is pinned in `requirements.txt`. Newer versions (0.10.20+) dropped the `mp.solutions` API used by this project.
 
 ### 2. Training the Model
 Open the Jupyter Notebook and execute all cells sequentially:
