@@ -1,0 +1,21 @@
+# Model Weights
+*.pth
+
+# Python
+__pycache__/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Dataset
+data/
+
+# Virtual Environments
+venv/
+.venv/
+env/
+.env/
+myenv/
+
+PLAN.md
+fix_pytorch.md
