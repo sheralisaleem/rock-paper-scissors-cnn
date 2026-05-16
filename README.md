@@ -12,6 +12,10 @@
 
 > A custom Convolutional Neural Network (CNN) built entirely from scratch using PyTorch to play Rock, Paper, Scissors in real-time through your webcam.
 
+<br>
+
+![Deep-RPS Demo](https://github.com/sheralisaleem/rock-paper-scissors-cnn/releases/latest/download/demo.gif)
+
 </div>
 
 ---
